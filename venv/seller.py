@@ -4,6 +4,7 @@ class Seller:
     def __init__(self, name, rating):
         self.name = name
         self.rating = rating
+        self.list = []  #try this method, otherwise set the list only inside the add_contract method
 
     def get_rating(self):
         return self.rating
@@ -12,8 +13,9 @@ class Seller:
     def set_rating(self, x):
         self.rating = x
 
+    @staticmethod   #this allows us to use the method without using the object itself
+    def add_contract_s(self, contract):
+        self.list.append(contract)
 
-    def own_contract(self):
-        pass
-    #start here, need to find a way for the seller to take ownership of the contract 
-        #later on buyer will take ownership
+    def print_seller_contracts(self):
+        print(self.list)
