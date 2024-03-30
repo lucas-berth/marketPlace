@@ -14,4 +14,6 @@ class Seller:
 
 
     def own_contract(self):
-        
+        pass
+    #start here, need to find a way for the seller to take ownership of the contract 
+        #later on buyer will take ownership
