@@ -1,0 +1,8 @@
+Project started: March 30th 2024
+
+Currently working:
+My original thought was to have the contract transfer from the seller to buyer like a traditonal marketplace... 
+But, the seller technically still has the contract in the terms of their debt and the buyer being a investor
+
+In this case we would want to setup the contract to be duplicated to the Buyers inventory 
+

@@ -14,8 +14,14 @@ class Seller:
         self.rating = x
 
     @staticmethod   #this allows us to use the method without using the object itself
-    def add_contract_s(self, contract):
+    def add_contract_s(self, contract): #might not have to have self passed as paramater here 
         self.list.append(contract)
 
     def print_seller_contracts(self):
         print(self.list)
+
+    def sell_contract(self, contract):
+        self.list.remove(contract)
+
+    def contract_return(self):
+        return self.list

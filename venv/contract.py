@@ -13,3 +13,5 @@ class Contract:
     
     def set_price(self, x):
         self.price = x
+
+    

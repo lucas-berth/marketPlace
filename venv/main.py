@@ -6,6 +6,7 @@ class main:
         pass
         
     mid_size_SUV = Contract(45000, 'car') #make contracts
+        #this will probably be made through an uploaded csv later on.
     #Contract.print_contract(first_customer) #display contracts
 
     #instantiate seller
@@ -15,7 +16,7 @@ class main:
     #add a contract to a seller
     Seller.add_contract_s(Lucas, mid_size_SUV)
 
-    Lucas.print_seller_contracts()  #this is working what only prints the memory address
+    Lucas.print_seller_contracts()  #this is working but only prints the memory address
     
     
     
