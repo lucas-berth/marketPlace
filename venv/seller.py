@@ -20,6 +20,7 @@ class Seller:
     def print_seller_contracts(self):
         print(self.list)
 
+    @staticmethod
     def sell_contract(self, contract):
         self.list.remove(contract)
 
