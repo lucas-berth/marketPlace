@@ -18,7 +18,9 @@ class Seller:
         self.list.append(contract)
 
     def print_seller_contracts(self):
-        print(self.list)
+        for x in range(len(self.list)):
+            print(self.list[x].__str__())
+        # print(self.list)
 
     @staticmethod
     def sell_contract(self, contract):

@@ -33,6 +33,11 @@ class Buyer:
         #if Seller.contract_return() ==     
                 #could loop through the seller's array list of contracts and once the matching one is found, remove it from seller and add it to seller. 
         
+    def drop_contract(self, Contract):
+        self.held_contracts.remove(Contract)
+        
 
     def print_buyer_contracts(self):
-        print(self.held_contracts)
+        # print(self.held_contracts)
+        for x in range(len(self.held_contracts)):
+            print(self.held_contracts[x].__str__())

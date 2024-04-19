@@ -11,3 +11,9 @@ In this case we would want to setup the contract to be duplicated to the Buyers 
 Now that we have buying and selling working we can try to get the program to run. Have the user input contracts, buyers or sellers. 
 Have the program run and iniative a buying or selling sequence. May bring in some price negoiations or bidding into the buying method. 
 May have an option to upload a spread sheet of buyers, sellers and contracts... -> pandas?
+
+
+04.18.24
+Contracts are properly printing with the help of the __str__ method added to Contracts. 
+Buyers can now drop contracts 
+May want to look into adding more automation or a "play by play" within main to make the application "run" through a scenario of selling and buying. 

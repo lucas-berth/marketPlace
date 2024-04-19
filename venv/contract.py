@@ -14,4 +14,5 @@ class Contract:
     def set_price(self, x):
         self.price = x
 
-    
+    def __str__(self):
+        return f' The contract consists of {self.name} at {self.price}'
