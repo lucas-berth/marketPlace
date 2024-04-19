@@ -1,56 +1,104 @@
 from contract import Contract
 from seller import Seller
 from buyer import Buyer
+import time 
 
 class main:
     def __init__(self) -> None:
         pass
+    
+    
+
+    def run_program():
+        while True:
+            print('welcome to ContractSwap! Please enter your name and role')
+            username = input('Enter Name: ')
+            role = input('Are you are a buyer or seller? ')
+            
+            if role == 'seller':
+                time.sleep(3) #wait 3 seconds
+                user_as_seller = Seller(username, 1)    #rating is not very important in this scenario
+                print('You have been added as a Seller! ')
+                time.sleep(2)
+
+                print('Please enter the name and amounts of the contracts you want to sell, then type "done". To start, type "go". ')
+                counter = 0
+                for x in input():
+                    if x != 'done':
+                        user_contract_name = input('Contract name: ')
+                        user_contract_amount = input('Contract amount: ')
+                        user_as_seller.add_contract_s(user_contract_name, user_contract_amount)
+                        counter + 1
+                        print('contracts added:  ' + str(counter))
+                        #user gets stuck around here
+                        #start working here
+
+                    else:
+                        time.sleep(1)
+                        print('You have added all your contracts, lets see them all: ')
+                        user_as_seller.print_seller_contracts()
+                        break       #this should stop the loop
+
+                
+
+            else:
+                time.sleep(3)
+                user_as_buyer = Buyer(username, 1)
+                print('You have been added as a Buyer!')
+            
+
+
+
+    run_program()
+
+
+    #in testing we made sure all of our classess and methods were working 
+    def testing():
+        mid_size_SUV = Contract(45000, 'car') #make contracts
+            #this will probably be made through an uploaded csv later on.
+        #Contract.print_contract(first_customer) #display contracts
+
+        #instantiate seller
+        Lucas = Seller('Lucas', 3)
+        #second seller
+        Jen = Seller('Jen', 5)
+        #print(Lucas.get_rating())  #show the rating of a seller
+
+        #instantiate Buyer
+        Henry = Buyer('Hentry', 5)
+
+        #add a contract to a seller
+        Seller.add_contract_s(Lucas, mid_size_SUV)
+
+        #2 more contracts
+        modern_home = Contract(214000, 'modern_home')
+        equipment_lease = Contract(22399, 'bottle_maker')
+
+        #add 2 new contracts to Jen
+        Seller.add_contract_s(Jen, modern_home)
+        Seller.add_contract_s(Jen, equipment_lease)
+
+        #Lucas.print_seller_contracts()  #this is working but only prints the memory address
         
-    mid_size_SUV = Contract(45000, 'car') #make contracts
-        #this will probably be made through an uploaded csv later on.
-    #Contract.print_contract(first_customer) #display contracts
+        #Henry will buy the contract off Lucas
+        Buyer.buy_contract(Henry, Lucas, mid_size_SUV)
+        
+        # Henry.print_buyer_contracts()   #contract at 0x7fa5ab5573a0>
+        # Lucas.print_seller_contracts()  #nothing 
+        
+        # Jen.print_seller_contracts() #working
 
-    #instantiate seller
-    Lucas = Seller('Lucas', 3)
-    #second seller
-    Jen = Seller('Jen', 5)
-    #print(Lucas.get_rating())  #show the rating of a seller
+        #Henry will buy the contracts off Jen and display them
+        Buyer.buy_contract(Henry, Jen, modern_home)
+        Buyer.buy_contract(Henry, Jen, equipment_lease)
+        
+        print('All of Henrys contracts')
+        Henry.print_buyer_contracts()
 
-    #instantiate Buyer
-    Henry = Buyer('Hentry', 5)
+        print('Henry drops the car contract')
 
-    #add a contract to a seller
-    Seller.add_contract_s(Lucas, mid_size_SUV)
-
-    #2 more contracts
-    modern_home = Contract(214000, 'modern_home')
-    equipment_lease = Contract(22399, 'bottle_maker')
-
-    #add 2 new contracts to Jen
-    Seller.add_contract_s(Jen, modern_home)
-    Seller.add_contract_s(Jen, equipment_lease)
-
-    #Lucas.print_seller_contracts()  #this is working but only prints the memory address
-    
-    #Henry will buy the contract off Lucas
-    Buyer.buy_contract(Henry, Lucas, mid_size_SUV)
-    
-    # Henry.print_buyer_contracts()   #contract at 0x7fa5ab5573a0>
-    # Lucas.print_seller_contracts()  #nothing 
-    
-   # Jen.print_seller_contracts() #working
-
-    #Henry will buy the contracts off Jen and display them
-    Buyer.buy_contract(Henry, Jen, modern_home)
-    Buyer.buy_contract(Henry, Jen, equipment_lease)
-    
-    print('All of Henrys contracts')
-    Henry.print_buyer_contracts()
-
-    print('Henry drops the car contract')
-
-    Henry.drop_contract(mid_size_SUV)
-    Henry.print_buyer_contracts()
+        Henry.drop_contract(mid_size_SUV)
+        Henry.print_buyer_contracts()
 
 
 

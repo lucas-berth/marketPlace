@@ -16,4 +16,4 @@ May have an option to upload a spread sheet of buyers, sellers and contracts... 
 04.18.24
 Contracts are properly printing with the help of the __str__ method added to Contracts. 
 Buyers can now drop contracts 
-May want to look into adding more automation or a "play by play" within main to make the application "run" through a scenario of selling and buying. 
+Started the actual "play by play" within main. Getting stuck when adding contracts to the seller. Needs different syntax or logic. Start in main run_program()
