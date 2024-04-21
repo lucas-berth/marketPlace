@@ -1,1 +1,5 @@
 .env
+#for future reference, make this file at the start of the repo. 
+#file added after this will be ignored. 
+#best used for items you do not want loaded to git
+#resource: https://www.youtube.com/watch?v=4a2ZVSzMMq8
