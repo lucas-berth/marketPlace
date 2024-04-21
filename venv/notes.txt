@@ -17,3 +17,12 @@ May have an option to upload a spread sheet of buyers, sellers and contracts... 
 Contracts are properly printing with the help of the __str__ method added to Contracts. 
 Buyers can now drop contracts 
 Started the actual "play by play" within main. Getting stuck when adding contracts to the seller. Needs different syntax or logic. Start in main run_program()
+        #help https://www.geeksforgeeks.org/get-user-input-in-loop-using-python/
+
+
+04.21.24
+Got the main run_program() function to run through a full scenario of the seller adding contracts.
+With there only being one user, having a buying and selling side simultaneously will be hard. May try this with adding virtual machine users accross a network (AWS)
+Next goal is to add a sql database within the contract class to add all contracts to a database and maybe even sellers for a relational schema. 
+    -- "login" to the app as the seller to add contracts to a DB. Then login as buyer to "purchase" contracts -- start here. 
+    -- more complicated SQL work could remove items from the DB and add it to the buyer DB or something of the like.
