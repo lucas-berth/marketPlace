@@ -2,24 +2,13 @@ from contract import Contract
 from seller import Seller
 from buyer import Buyer
 import time 
-import mysql.connector
 
 class main:
     def __init__(self) -> None:
         pass
     
 
-    mydb = mysql.connector.connect(
-        host = "localhost",
-        user = "yourusername",
-        password = "yourpassword"
-    )
-
-    mycursor = mydb.cursor()
-    mycursor.execute("SHOW DATABSES")
-
-    for x in mycursor:
-        print(x)
+   
 
     
 
