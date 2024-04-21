@@ -20,32 +20,35 @@ class main:
                 user_as_seller = Seller(username, 1)    #rating is not very important in this scenario
                 print('You have been added as a Seller! ')
                 time.sleep(2)
-
-                print('Please enter the name and amounts of the contracts you want to sell, then type "done". To start, type "go". ')
                 counter = 0
-                for x in input():
-                    if x != 'done':
-                        user_contract_name = input('Contract name: ')
-                        user_contract_amount = input('Contract amount: ')
-                        user_as_seller.add_contract_s(user_contract_name, user_contract_amount)
-                        counter + 1
-                        print('contracts added:  ' + str(counter))
-                        #user gets stuck around here
-                        #start working here
+                print('Please enter the name and amounts of the contracts you want to sell, then type "done". To start, type "go". ')
 
-                    else:
+                while True:
+                    user_adding_contracts = input('Add contract? (or "done" to finish): ')
+                    
+                    if user_adding_contracts == 'done':
                         time.sleep(1)
                         print('You have added all your contracts, lets see them all: ')
                         user_as_seller.print_seller_contracts()
-                        break       #this should stop the loop
-
+                        break   
+                        
+                    user_contract_name = input('Contract name: ')
+                    user_contract_amount = int(input('Contract amount: '))
+                    user_contract = Contract(user_contract_amount, user_contract_name)
+                    Seller.add_contract_s(user_as_seller, user_contract)     
+                    counter = counter + 1
+                    print('contracts added:  ' + str(counter))
+                        
+                        
+                        
+                break
                 
 
             else:
                 time.sleep(3)
                 user_as_buyer = Buyer(username, 1)
                 print('You have been added as a Buyer!')
-            
+                break       #this should stop the loop
 
 
 
