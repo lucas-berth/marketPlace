@@ -24,5 +24,10 @@ Started the actual "play by play" within main. Getting stuck when adding contrac
 Got the main run_program() function to run through a full scenario of the seller adding contracts.
 With there only being one user, having a buying and selling side simultaneously will be hard. May try this with adding virtual machine users accross a network (AWS)
 Next goal is to add a sql database within the contract class to add all contracts to a database and maybe even sellers for a relational schema. 
+        --getting started with MongoDB: https://www.mongodb.com/developer/languages/python/python-quickstart-crud/
     -- "login" to the app as the seller to add contracts to a DB. Then login as buyer to "purchase" contracts -- start here. 
     -- more complicated SQL work could remove items from the DB and add it to the buyer DB or something of the like.
+
+According to research, you have to insert a document (insert statement) in order to create the new database 
+             help:   https://www.w3schools.com/python/python_mongodb_insert.asp#:~:text=To%20insert%20a%20record%2C%20or,document%20you%20want%20to%20insert.
+Becuase I am using Atlas cloud this might be different. 
