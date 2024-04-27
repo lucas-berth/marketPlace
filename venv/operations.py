@@ -26,9 +26,31 @@ class DB:
          print(db_info)
 
    @staticmethod
-   def DB_insert_contract(Contract):
-       print("Here is the contract {} at {}".format(Contract.get_name, Contract.get_price))
+   def DB_insert_contract(self,Contract):
+      print("Here is the contract {} at {}".format(Contract.name, Contract.price))
+      #here we are capturing the contract name and price
+      #Here are the elements I want to attach to the database entre along with these items:
+            #ID, name, price, load date(date contract was added), status (sold or available) 
+      try:
+         #here we will have to grab the last items _id to interate for the next insertion
+         #we wiill also havet to grab the last contract name and contract ID to either use the same contract_id or to interate a new one.
+         mydb = self.connection["marketPlace_DB"]
+         mycol = mydb["contracts"]
+         record = {
+               "_id": 1,
+               "contract_id": 1,
+               "name": Contract.name,
+               "price": Contract.price,
+               "time_inserted": datetime.datetime.now(),
+               "status": "available"
+               }
+         x = mycol.insert_one(record)
 
+         #print(x.inserted_id) 
+         print("Successfully inserted into database with this id: " + str(x.inserted_id))
+         #if the insert does not work, user will be notified 
+      except:
+         print("Unsuccessfully inserted into MongoDB")
 
 
 
