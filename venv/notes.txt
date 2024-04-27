@@ -31,3 +31,11 @@ Next goal is to add a sql database within the contract class to add all contract
 According to research, you have to insert a document (insert statement) in order to create the new database 
              help:   https://www.w3schools.com/python/python_mongodb_insert.asp#:~:text=To%20insert%20a%20record%2C%20or,document%20you%20want%20to%20insert.
 Becuase I am using Atlas cloud this might be different. 
+
+
+04.27.24
+The most useful resource was a method to get a particular value out of the mongodb document: 
+                        https://stackoverflow.com/questions/31077812/how-do-i-get-the-id-from-an-objectid-using-python
+Current status:
+
+Goal for next session:

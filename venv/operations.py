@@ -36,15 +36,37 @@ class DB:
          #we wiill also havet to grab the last contract name and contract ID to either use the same contract_id or to interate a new one.
          mydb = self.connection["marketPlace_DB"]
          mycol = mydb["contracts"]
-         record = {
-               "_id": 1,
-               "contract_id": 1,
-               "name": Contract.name,
-               "price": Contract.price,
-               "time_inserted": datetime.datetime.now(),
-               "status": "available"
-               }
-         x = mycol.insert_one(record)
+         #myquery = { "name": Contract.name} #look for the contract we are adding within the database
+
+         #need to find a way to get the contract_id 
+
+         #mydoc = mycol.find(myquery)
+         
+         myquery = {"name": Contract.name}
+         mydoc = mycol.find_one(myquery)
+         #print(mydoc.get('_id'))
+
+
+
+
+         #start here***
+         #find the max _id and add one for the newest record.
+         #if the contract name already exists, then find the contract_id for it already in the DB and use it
+         #may need to do some conditional functions to accomplish this.
+         #print(mycol.findOne({$query:{},$orderby:{_id:-1}}))
+
+
+         # for x in mydoc:
+         #    print(x)
+         # record = {
+         #       "_id": 1,
+         #       "contract_id": 1,
+         #       "name": Contract.name,
+         #       "price": Contract.price,
+         #       "time_inserted": datetime.datetime.now(),
+         #       "status": "available"
+         #       }
+         # x = mycol.insert_one(record)
 
          #print(x.inserted_id) 
          print("Successfully inserted into database with this id: " + str(x.inserted_id))
