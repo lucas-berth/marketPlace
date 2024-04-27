@@ -1,12 +1,25 @@
 from contract import Contract
 from seller import Seller
 from buyer import Buyer
+from operations import DB
 import time 
 
 class main:
     def __init__(self) -> None:
         pass
     
+
+    #DB testing
+
+    #add new contract
+    farm_land = Contract(142000400, 'farm_land')
+
+    #pass contract information over to operations class
+    DB.DB_insert_contract(farm_land)
+
+    #working, but printing 
+    #Here is the contract <function Contract.get_name at 0x7fbaaae10ca0> at <function Contract.get_price at 0x7fbaaae10b80>
+    #start here: may need to conver the getters to something different that returns strings for easier passing.
 
    
 
