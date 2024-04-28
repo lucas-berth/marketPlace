@@ -33,9 +33,13 @@ According to research, you have to insert a document (insert statement) in order
 Becuase I am using Atlas cloud this might be different. 
 
 
-04.27.24
+04.27.24 - 04.28.24
 The most useful resource was a method to get a particular value out of the mongodb document: 
                         https://stackoverflow.com/questions/31077812/how-do-i-get-the-id-from-an-objectid-using-python
 Current status:
-
+Working on iterating the IDs to ensure they are inserted orderly.
+I have a video linked in the operations class that should give me a better idea on how to read in the noSQL data
 Goal for next session:
+        Get the Ids to iterate as contracts are added to the DB.
+        *note: DB has 2 items currently and is at 135MB out of 500MB.
+        

@@ -42,25 +42,33 @@ class DB:
 
          #mydoc = mycol.find(myquery)
          
-         myquery = {"name": Contract.name}
-         mydoc = mycol.find_one(myquery)
-         #print(mydoc.get('_id'))
+         # myquery = {"name": Contract.name}
+         # mydoc = mycol.find_one(myquery)
+         # print(mydoc.get('_id'))
 
 
 
 
-         #start here***
+         #start here***    https://www.youtube.com/watch?v=UpsZDGutpZc
          #find the max _id and add one for the newest record.
          #if the contract name already exists, then find the contract_id for it already in the DB and use it
          #may need to do some conditional functions to accomplish this.
-         #print(mycol.findOne({$query:{},$orderby:{_id:-1}}))
+         
+      
 
+         mydoc2 = mycol.find().sort( {"_id": -1}).limit(1)
+         #for post in mydoc2:
+            #print(post)
+
+         print()
+         #we got the top ID from this... but need to extract the id value. 
+         
 
          # for x in mydoc:
          #    print(x)
          # record = {
-         #       "_id": 1,
-         #       "contract_id": 1,
+         #       "_id": 2,   #grab max Id and add 1 (+1)
+         #       "contract_id": 2, #grab max contract_id and add 1 (+1)
          #       "name": Contract.name,
          #       "price": Contract.price,
          #       "time_inserted": datetime.datetime.now(),

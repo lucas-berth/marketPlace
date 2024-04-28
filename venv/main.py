@@ -13,10 +13,11 @@ class main:
     data_base01 = DB('contracts_db')
 
     #add new contract
-    farm_land = Contract(142000400, 'farm_land')
+    #farm_land = Contract(142000400, 'farm_land')
+    equipment_lease = Contract(235899, 'Machinery')
 
     #pass contract information over to operations class
-    DB.DB_insert_contract(data_base01, farm_land)
+    DB.DB_insert_contract(data_base01, equipment_lease)
     #working here
    
 
