@@ -42,10 +42,34 @@ class DB:
 
          #mydoc = mycol.find(myquery)
          
-         # myquery = {"name": Contract.name}
-         # mydoc = mycol.find_one(myquery)
-         # print(mydoc.get('_id'))
+         myquery = {"name": Contract.name}
+         mydoc = mycol.find_one(myquery)
+         print(mydoc.get('_id'), "of ID 2")
 
+         print("Trying to print the count starting here")
+         count =  list(mycol.find())
+         print(len(count))
+         for what in count:
+            print(what)
+
+         
+
+         myquery2 = {"_id": len(count)}
+         mydoc2 = mycol.find_one(myquery2)
+         print(mydoc2.get('_id'), "of max ID")
+         #working here
+
+         #still need to find a way to reuse a contract_id if it is already in the system. 
+         mydoc4 = list(mycol.find().sort( {"_id": -1}).limit(1))
+         #this is storing the document I want from the database into 1 list item, not key value pairs. 
+
+         mydoc5 = mycol.find().sort( {"_id": -1}).limit(1)
+         print(mydoc5.get('_id'))
+
+         #start here 
+         #we have the max documents in the collection now -> so we can iterate that. 
+         #maybe do a find name of contract then copy contract ID otherwise assign random number?
+         
 
 
 
@@ -56,11 +80,11 @@ class DB:
          
       
 
-         mydoc2 = mycol.find().sort( {"_id": -1}).limit(1)
-         #for post in mydoc2:
-            #print(post)
+         #mydoc2 = mycol.find().sort( {"_id": -1}).limit(1)
+         # for post in mydoc2:
+         #    print(post)
 
-         print()
+         
          #we got the top ID from this... but need to extract the id value. 
          
 
@@ -77,10 +101,11 @@ class DB:
          # x = mycol.insert_one(record)
 
          #print(x.inserted_id) 
-         print("Successfully inserted into database with this id: " + str(x.inserted_id))
+         #print("Successfully inserted into database with this id: " + str(x.inserted_id))
          #if the insert does not work, user will be notified 
-      except:
-         print("Unsuccessfully inserted into MongoDB")
+      except Exception as error:
+         print("Unsuccessfully inserted into MongoDB" + "Error is    ", error)
+      
 
 
 
