@@ -36,96 +36,79 @@ class DB:
          #we wiill also havet to grab the last contract name and contract ID to either use the same contract_id or to interate a new one.
          mydb = self.connection["marketPlace_DB"]
          mycol = mydb["contracts"]
-         #myquery = { "name": Contract.name} #look for the contract we are adding within the database
-
-         #need to find a way to get the contract_id 
-
-         #mydoc = mycol.find(myquery)
-         
-         myquery = {"name": Contract.name}
-         mydoc = mycol.find_one(myquery)
-         print(mydoc.get('_id'), "of ID 2")
-
-         print("Trying to print the count starting here")
-         count =  list(mycol.find())
-         print(len(count))
-         for what in count:
-            print(what)
-
-         
-
-         myquery2 = {"_id": len(count)}
-         mydoc2 = mycol.find_one(myquery2)
-         print(mydoc2.get('_id'), "of max ID")
-         #working here
 
          #still need to find a way to reuse a contract_id if it is already in the system. 
-         mydoc4 = list(mycol.find().sort( {"_id": -1}).limit(1))
+         #mydoc4 = list(mycol.find().sort( {"_id": -1}).limit(1))
          #this is storing the document I want from the database into 1 list item, not key value pairs. 
-
-         mydoc5 = mycol.find().sort( {"_id": -1}).limit(1)
-         print(mydoc5.get('_id'))
-
-         #start here 
-         #we have the max documents in the collection now -> so we can iterate that. 
-         #maybe do a find name of contract then copy contract ID otherwise assign random number?
          
+         count =  list(mycol.find())
+            #count will get the total amount of documents in the collection
+         new_id = len(count)+1
+            #amount of documents in the collection and add 1 to iterate a new _id for the new contract
+                  # for x in mydoc:
+                  #    print(x)
+         record = {
+               "_id": new_id,   #grab max Id and add 1 (+1)
+               "contract_id": new_id, #grab max contract_id and add 1 (+1)
+               "name": Contract.name,
+               "price": Contract.price,
+               "time_inserted": datetime.datetime.now(),
+               "status": "available"
+               }
+         x = mycol.insert_one(record)
 
-
-
-         #start here***    https://www.youtube.com/watch?v=UpsZDGutpZc
-         #find the max _id and add one for the newest record.
-         #if the contract name already exists, then find the contract_id for it already in the DB and use it
-         #may need to do some conditional functions to accomplish this.
-         
-      
-
-         #mydoc2 = mycol.find().sort( {"_id": -1}).limit(1)
-         # for post in mydoc2:
-         #    print(post)
-
-         
-         #we got the top ID from this... but need to extract the id value. 
-         
-
-         # for x in mydoc:
-         #    print(x)
-         # record = {
-         #       "_id": 2,   #grab max Id and add 1 (+1)
-         #       "contract_id": 2, #grab max contract_id and add 1 (+1)
-         #       "name": Contract.name,
-         #       "price": Contract.price,
-         #       "time_inserted": datetime.datetime.now(),
-         #       "status": "available"
-         #       }
-         # x = mycol.insert_one(record)
-
-         #print(x.inserted_id) 
-         #print("Successfully inserted into database with this id: " + str(x.inserted_id))
+         print(x.inserted_id) 
+         print("Successfully inserted into database with this id: " + str(x.inserted_id))
          #if the insert does not work, user will be notified 
       except Exception as error:
          print("Unsuccessfully inserted into MongoDB" + "Error is    ", error)
       
+   def DB_update_contract(self, Contract):
+      try:
+            mydb = self.connection["marketPlace_DB"]
+            mycol = mydb["contracts"]
+         
+            myquery = {"name": Contract.name}
+            #find the document with the contract name passed
+                        #mydoc = mycol.find_one(myquery)
+                        #print(mydoc.get('contract_id'), " is the contract_id of the contract passed")
+            newvalues = {"$set": {"status": "sold"}}
+            #set the status value you sold
+            mycol.update_one(myquery, newvalues)
+            #commit changes
+
+
+            #start here
+            #find name within document and update status and insert a "sell Datetime" if sold. 
+
+            mydoc = mycol.find({"name": Contract.name})
+            for x in mydoc:
+                print(x)
+            #show that the status was updated on the contract
+
+      except Exception as error:
+            print("Unsuccessfully inserted into MongoDB" + "Error is    ", error)
+            
 
 
 
-# if "marketPlace_DB" in client.list_database_names():
-#    print("Database exists")
-   
-#    #add in logic to add new contract to existing database. 
-# else:
-#    #create new db by inserting document 
-#    mydb = client["marketPlace_DB"]
-#    mycol = mydb["contracts"]
+      # if "marketPlace_DB" in client.list_database_names():
+      #    print("Database exists")
+         
+      #    #add in logic to add new contract to existing database. 
+      # else:
+      #    #create new db by inserting document 
+      #    mydb = client["marketPlace_DB"]
+      #    mycol = mydb["contracts"]
 
-#    first_contract = {"name": "Truck", "amount": "40,294"}   #this would come from the contract class
-#    x = mycol.insert_one(first_contract)
+      #    first_contract = {"name": "Truck", "amount": "40,294"}   #this would come from the contract class
+      #    x = mycol.insert_one(first_contract)
 
-#    print(x.inserted_id)    #ensure it was inserted
-   
+      #    print(x.inserted_id)    #ensure it was inserted
+         
 
-   #start here
-      #DB is setup and working in mongoDB (json structure)
-   #thoughts:
-      #do we wan to have database insert methods by class or as a class of its own that is facilitated through main.
+         #start here
+            #DB is setup and working in mongoDB (json structure)
+         #thoughts:
+            #do we wan to have database insert methods by class or as a class of its own that is facilitated through main.
       

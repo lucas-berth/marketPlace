@@ -43,3 +43,12 @@ Goal for next session:
         Get the Ids to iterate as contracts are added to the DB.
         *note: DB has 2 items currently and is at 135MB out of 500MB.
         
+
+04.30.24
+Found a new system for tracking bought and sold contracts that is more simplified. 
+        --need to see if we can add another attribute to a document that is already created
+                --date sold (datetime field)
+
+Work on implementing the Database functions into the run_program() function in main
+Potentially look to link to API to grab mock data or live contracts as a next iteration to the project.
+***Or -> look to add database functionality for buyers and sellers to make the project more complete
