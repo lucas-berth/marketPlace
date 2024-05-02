@@ -10,18 +10,18 @@ class main:
     
 
     #DB testing
-    data_base01 = DB('contracts_db')
+    contracts_db = DB('contracts_db')
 
     #add new contract
     #farm_land = Contract(142000400, 'farm_land')
     equipment_lease = Contract(235899, 'Machinery')
 
     #pass contract information over to operations class
-    #DB.DB_insert_contract(data_base01, equipment_lease)
+    #DB.DB_insert_contract(contracts_db, equipment_lease)
         #confirmed the insert contract is working -> need to add to the sell feature
     
     #update document (contract item in collection) if sold.
-    DB.DB_update_contract(data_base01, equipment_lease)
+    DB.DB_update_contract(contracts_db, equipment_lease)
         #confirmed working
    
 

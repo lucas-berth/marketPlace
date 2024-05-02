@@ -76,10 +76,10 @@ class DB:
             #set the status value you sold
             mycol.update_one(myquery, newvalues)
             #commit changes
-
-
-            #start here
-            #find name within document and update status and insert a "sell Datetime" if sold. 
+            soldtime = datetime.datetime.now()
+            add_soldtime = {"$set": {"Sold_Datetime": soldtime}}
+            mycol.update_one(myquery, add_soldtime)
+            #adds the sold date time of the contract 
 
             mydoc = mycol.find({"name": Contract.name})
             for x in mydoc:
@@ -88,27 +88,5 @@ class DB:
 
       except Exception as error:
             print("Unsuccessfully inserted into MongoDB" + "Error is    ", error)
-            
-
-
-
-      # if "marketPlace_DB" in client.list_database_names():
-      #    print("Database exists")
          
-      #    #add in logic to add new contract to existing database. 
-      # else:
-      #    #create new db by inserting document 
-      #    mydb = client["marketPlace_DB"]
-      #    mycol = mydb["contracts"]
-
-      #    first_contract = {"name": "Truck", "amount": "40,294"}   #this would come from the contract class
-      #    x = mycol.insert_one(first_contract)
-
-      #    print(x.inserted_id)    #ensure it was inserted
-         
-
-         #start here
-            #DB is setup and working in mongoDB (json structure)
-         #thoughts:
-            #do we wan to have database insert methods by class or as a class of its own that is facilitated through main.
       
