@@ -65,19 +65,16 @@ class DB:
       except Exception as error:
          print("Unsuccessfully inserted into MongoDB" + "Error is    ", error)
       
-   def DB_update_contract(self, Contract):
+   def DB_trade_facilitor(self, Contract, Buyer, Seller):
       try:
+            #add contracts to Buyer collection
+            #set status in contracts and seller collection
+            #add sold datetimes to each collection
             mydb = self.connection["marketPlace_DB"]
             mycol = mydb["contracts"]
          
             myquery = {"name": Contract.name}
-            #find the document with the contract name passed
-                        #mydoc = mycol.find_one(myquery)
-                        #print(mydoc.get('contract_id'), " is the contract_id of the contract passed")
-            newvalues = {"$set": {"status": "sold"}}
-            #set the status value you sold
-            mycol.update_one(myquery, newvalues)
-            #commit changes
+         
             soldtime = datetime.datetime.now()
             add_soldtime = {"$set": {"Sold_Datetime": soldtime}}
             mycol.update_one(myquery, add_soldtime)
@@ -120,7 +117,8 @@ class DB:
             add_contract = {"$push": {"contracts_owned": 
                      {
                      "Contract_name": x.name,
-                     "Contract_price": x.price
+                     "Contract_price": x.price,
+                     "Contract_status": x.status
                      }
             }
             }
@@ -130,6 +128,21 @@ class DB:
             print("Unsuccessfully inserted into MongoDB" + "Error is    ", error)
 
 
-   # def DB_insert_buyer(self, Buyer):
-   #    pass
+   def DB_insert_buyer(self, Buyer):
+      mydb = self.connection["marketPlace_DB"]
+      mycol = mydb["buyers"]
+
+      count =  list(mycol.find())
+      new_id = len(count)+1
+
+      record = {
+          "_id": new_id,
+          "name": Buyer.name,
+          "rating": Buyer.rating
+         }
+   
+      x = mycol.insert_one(record)
+
+      print(x.inserted_id) 
+      print("Successfully inserted into database with this id: " + str(x.inserted_id))
       

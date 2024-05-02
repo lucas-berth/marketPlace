@@ -25,12 +25,23 @@ class main:
         #confirmed working
 
     #add seller to seller database along with contracts
-    seller_db = DB('seller_db')
+    # seller_db = DB('seller_db')
 
-    Jimmy = Seller("Jimmy", 1)
-    Jimmy.add_contract_s(Jimmy, farm_land)  #add farm_land contract to Jimmy
-    Jimmy.add_contract_s(Jimmy, equipment_lease)    #add equipment_lease contract to Jimmy
-    seller_db.DB_insert_Seller(Jimmy)   #insert Jimmy into Seller collections database and add his contracts
+    # Jimmy = Seller("Jimmy", 1)
+    # Jimmy.add_contract_s(Jimmy, farm_land)  
+    #     #add farm_land contract to Jimmy
+    # Jimmy.add_contract_s(Jimmy, equipment_lease)    
+    #     #add equipment_lease contract to Jimmy
+    # seller_db.DB_insert_Seller(Jimmy)   
+        #insert Jimmy into Seller collections database and add his contracts
+    #confirmed working
+
+    #setup buyer collection 
+    buyer_db = DB('buyer_db')
+
+    Phil = Buyer('Phil', 1)
+
+    buyer_db.DB_insert_buyer(Phil)
 
    
 

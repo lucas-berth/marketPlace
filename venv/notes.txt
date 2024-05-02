@@ -59,3 +59,7 @@ Was able to create the sellers collection database and add multiple contracts in
         --https://stackoverflow.com/questions/62827951/how-to-insert-array-list-of-objects-in-existing-mongodb-document
 
 **future state, may want to consider some redundancy by adding logic to check database for existing items
+Next steps:
+ --configure the trade function within the DB class
+ need to keep in mind order of operations with adding contracts to the array to then be added to the buyer collection
+ Review ratings and movement of objects between classes before inserting into database.

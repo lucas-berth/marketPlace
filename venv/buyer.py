@@ -17,7 +17,8 @@ class Buyer:
     def buy_contract(self, Seller, Contract) :
         Seller.sell_contract(Seller, Contract) #contract should be removed from the seller array list
         self.held_contracts.append(Contract) #contract should add itself to the array list of the buyer
-
+        Contract.status = "sold"
+        self.rating = self.rating + 1
 
         #04.11.24 working!
 
