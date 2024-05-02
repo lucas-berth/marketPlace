@@ -3,6 +3,8 @@ import os
 #import threading : may look into multithread to get the DB to load in the background
 
 from contract import Contract
+from seller import Seller
+from buyer import Buyer
 
 from dotenv import load_dotenv
 from pymongo import MongoClient
@@ -53,7 +55,7 @@ class DB:
                "name": Contract.name,
                "price": Contract.price,
                "time_inserted": datetime.datetime.now(),
-               "status": "available"
+               "status": Contract.status
                }
          x = mycol.insert_one(record)
 
@@ -89,4 +91,45 @@ class DB:
       except Exception as error:
             print("Unsuccessfully inserted into MongoDB" + "Error is    ", error)
          
+
+   def DB_insert_Seller(self, Seller):
+      mydb = self.connection["marketPlace_DB"]
+      mycol = mydb["sellers"]
+
+      count =  list(mycol.find())
+      new_id = len(count)+1
+
+      record = {
+          "_id": new_id,
+          "name": Seller.name,
+          "rating": Seller.rating,
+          "time_inserted": datetime.datetime.now(),
+         }
+      x = mycol.insert_one(record)
+
+      print(x.inserted_id) 
+      print("Successfully inserted into database with this id: " + str(x.inserted_id))
+
+
+      try:
+
+         #iterate through the list of contracts that the seller owns and insert their _ids/names 
+         #think about how we want these contracts to look within the seller document
+         for x in Seller.list:
+            myquery = {"name": Seller.name}
+            add_contract = {"$push": {"contracts_owned": 
+                     {
+                     "Contract_name": x.name,
+                     "Contract_price": x.price
+                     }
+            }
+            }
+            mycol.update_one(myquery, add_contract)
+
+      except Exception as error:
+            print("Unsuccessfully inserted into MongoDB" + "Error is    ", error)
+
+
+   # def DB_insert_buyer(self, Buyer):
+   #    pass
       

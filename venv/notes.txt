@@ -52,3 +52,10 @@ Found a new system for tracking bought and sold contracts that is more simplifie
 Work on implementing the Database functions into the run_program() function in main
 Potentially look to link to API to grab mock data or live contracts as a next iteration to the project.
 ***Or -> look to add database functionality for buyers and sellers to make the project more complete
+
+
+05.01.24
+Was able to create the sellers collection database and add multiple contracts in an array format to the document
+        --https://stackoverflow.com/questions/62827951/how-to-insert-array-list-of-objects-in-existing-mongodb-document
+
+**future state, may want to consider some redundancy by adding logic to check database for existing items

@@ -4,6 +4,7 @@ class Contract:
     def __init__(self, price, name):
         self.price = price
         self.name = name
+        self.status = "available"
 
     @staticmethod
     def print_contract(self):
