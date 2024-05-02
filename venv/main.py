@@ -42,6 +42,10 @@ class main:
     Phil = Buyer('Phil', 1)
 
     buyer_db.DB_insert_buyer(Phil)
+    #confirmed working 
+
+
+    #start here: operations: DB_trade_facilitor
 
    
 
