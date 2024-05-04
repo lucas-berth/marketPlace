@@ -70,20 +70,61 @@ class DB:
             #add contracts to Buyer collection
             #set status in contracts and seller collection
             #add sold datetimes to each collection
+
+            #connect to database
             mydb = self.connection["marketPlace_DB"]
-            mycol = mydb["contracts"]
+            mycol_cont = mydb["contracts"]   #connect to contracts
+            mycol_buyer = mydb["buyers"]  #connect to buyers
+            mycol_seller = mydb["sellers"]   #connect to sellers
          
-            myquery = {"name": Contract.name}
+            myquery_cont = {"name": Contract.name}
          
-            soldtime = datetime.datetime.now()
-            add_soldtime = {"$set": {"Sold_Datetime": soldtime}}
-            mycol.update_one(myquery, add_soldtime)
+            soldtime = datetime.datetime.now()  #get the time of the "sale"
+
+            add_soldtime = {"$set": {"Sold_Datetime": soldtime,
+                                          "status": "sold"}}
+            Contract.status = "sold"
+            mycol_cont.update_one(myquery_cont, add_soldtime)
             #adds the sold date time of the contract 
 
-            mydoc = mycol.find({"name": Contract.name})
-            for x in mydoc:
-                print(x)
-            #show that the status was updated on the contract
+            myquery_seller = {"name": Seller.name}
+            add_soldtime_for_seller = {"$set": {"contracts_owned": {
+                                          "Contract_name": Contract.name,
+                                          "Contact_sold_datetime": soldtime
+                                                }
+                                               }}
+            mycol_seller.update_one(myquery_seller, add_soldtime_for_seller)
+            #adds the sold date time of the contract in the seller collection
+
+
+            myquery_buyer = {"name": Buyer.name}
+            # buyer_add_contract = {"$push": {"contracts_bought": {
+            #                                  "Contract_name": Contract.name,
+            #                                  "Contract_price": Contract.price,
+            #                                  "Contract_bought_datetime": soldtime
+            #                                  }                           
+            #                                  }}
+            
+
+            for x in Buyer.contracts_held:
+               add_contract = {"$push": {"contracts_bought": 
+                        {
+                        "Contract_name": x.name,
+                        "Contract_price": x.price,
+                        "Contract_status": x.status,
+                        "Contract_bought_datetime": soldtime
+                        }
+                  }
+                  }
+               mycol_buyer.update_one(myquery_buyer, add_contract)
+            
+            mycol_buyer.find_one(myquery_buyer)
+            mycol_seller.find_one(myquery_seller)
+            mycol_cont.find_one(myquery_cont)
+            #should print out all of our changes the the following:  contract(s), seller, buyer
+
+
+         #start here: work on implementing a rating update for buyers and sellers in the database
 
       except Exception as error:
             print("Unsuccessfully inserted into MongoDB" + "Error is    ", error)

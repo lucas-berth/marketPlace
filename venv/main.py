@@ -37,15 +37,64 @@ class main:
     #confirmed working
 
     #setup buyer collection 
-    buyer_db = DB('buyer_db')
+    
 
-    Phil = Buyer('Phil', 1)
-
-    buyer_db.DB_insert_buyer(Phil)
+    
     #confirmed working 
 
 
     #start here: operations: DB_trade_facilitor
+    #Order of operations:
+        #Buyer is added
+            #Run DB_insert_buyer
+        #Seller is added 
+        #Contracts are added
+            #Run DB_insert_contract
+        #Seller takes ownership of contracts 
+            #run DB_insert_Seller
+
+    #if trade (buy/sell) takes place:
+        #need to consider redunancy step (check contract names before inserting into database)
+        #Use class method to "transfer" contracts to buyer
+        #have database read in contracts of the buyer 
+        #set the status of the contract in contract and seller collections along with classes 
+            #*going to maintain the list of contracts in the seller class to keep record of all owned contracts over time 
+    #trial 1
+    #initiate database class
+    db_connection = DB('db_connection1')
+    
+    #workingwith Phil (existing buyer)
+    Phil = Buyer('Phil', 1)
+
+    db_connection.DB_insert_buyer(Phil)
+
+    #new seller
+    Frank = Seller('Frank', 1)
+    
+    #new contracts
+    pallets = Contract(24300, 'Wood_pallets')
+    metal = Contract(340222, 'Metal_beams')
+    scaffholding = Contract(28999, 'Scaffholding')
+
+    #insert seller in db (with their contracts)
+    Seller.add_contract_s(Frank, pallets)
+    Seller.add_contract_s(Frank, metal)
+    Seller.add_contract_s(Frank, scaffholding)
+
+    db_connection.DB_insert_contract(pallets)
+    db_connection.DB_insert_contract(metal)
+    db_connection.DB_insert_contract(scaffholding)
+
+    db_connection.DB_insert_Seller(Frank)
+
+
+
+    #do a sale
+    Buyer.buy_contract(Phil, Frank, metal)
+    Seller.sell_contract(Frank, metal)  #not really needed
+    db_connection.DB_trade_facilitor(pallets, Phil, Frank)
+
+
 
    
 
