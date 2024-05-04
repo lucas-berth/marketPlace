@@ -90,6 +90,7 @@ class DB:
             myquery_seller = {"name": Seller.name}
             add_soldtime_for_seller = {"$set": {"contracts_owned": {
                                           "Contract_name": Contract.name,
+                                          "Contract_price": Contract.price,
                                           "Contact_sold_datetime": soldtime
                                                 }
                                                }}
@@ -106,7 +107,7 @@ class DB:
             #                                  }}
             
 
-            for x in Buyer.contracts_held:
+            for x in Buyer.held_contracts:
                add_contract = {"$push": {"contracts_bought": 
                         {
                         "Contract_name": x.name,

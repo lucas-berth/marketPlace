@@ -66,7 +66,7 @@ class main:
     #workingwith Phil (existing buyer)
     Phil = Buyer('Phil', 1)
 
-    db_connection.DB_insert_buyer(Phil)
+    #db_connection.DB_insert_buyer(Phil)
 
     #new seller
     Frank = Seller('Frank', 1)
@@ -77,22 +77,22 @@ class main:
     scaffholding = Contract(28999, 'Scaffholding')
 
     #insert seller in db (with their contracts)
-    Seller.add_contract_s(Frank, pallets)
-    Seller.add_contract_s(Frank, metal)
-    Seller.add_contract_s(Frank, scaffholding)
+    # Seller.add_contract_s(Frank, pallets)
+    # Seller.add_contract_s(Frank, metal)
+    # Seller.add_contract_s(Frank, scaffholding)
 
-    db_connection.DB_insert_contract(pallets)
-    db_connection.DB_insert_contract(metal)
-    db_connection.DB_insert_contract(scaffholding)
+    # db_connection.DB_insert_contract(db_connection, pallets)
+    # db_connection.DB_insert_contract(db_connection, metal)
+    # db_connection.DB_insert_contract(db_connection, scaffholding)
 
-    db_connection.DB_insert_Seller(Frank)
-
-
+    # db_connection.DB_insert_Seller(Frank)
 
     #do a sale
     Buyer.buy_contract(Phil, Frank, metal)
     Seller.sell_contract(Frank, metal)  #not really needed
-    db_connection.DB_trade_facilitor(pallets, Phil, Frank)
+    db_connection.DB_trade_facilitor(metal, Phil, Frank)
+
+   
 
 
 
