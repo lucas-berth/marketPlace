@@ -60,21 +60,20 @@ class main:
         #set the status of the contract in contract and seller collections along with classes 
             #*going to maintain the list of contracts in the seller class to keep record of all owned contracts over time 
     #trial 1
-    #initiate database class
-    db_connection = DB('db_connection1')
+    
     
     #workingwith Phil (existing buyer)
-    Phil = Buyer('Phil', 1)
+    # Phil = Buyer('Phil', 1)
 
     #db_connection.DB_insert_buyer(Phil)
 
     #new seller
-    Frank = Seller('Frank', 1)
+    # Frank = Seller('Frank', 1)
     
     #new contracts
-    pallets = Contract(24300, 'Wood_pallets')
-    metal = Contract(340222, 'Metal_beams')
-    scaffholding = Contract(28999, 'Scaffholding')
+    # pallets = Contract(24300, 'Wood_pallets')
+    # metal = Contract(340222, 'Metal_beams')
+    # scaffholding = Contract(28999, 'Scaffholding')
 
     #insert seller in db (with their contracts)
     # Seller.add_contract_s(Frank, pallets)
@@ -88,16 +87,33 @@ class main:
     # db_connection.DB_insert_Seller(Frank)
 
     #do a sale
-    Buyer.buy_contract(Phil, Frank, metal)
-    Seller.sell_contract(Frank, metal)  #not really needed
-    db_connection.DB_trade_facilitor(metal, Phil, Frank)
+    # Buyer.buy_contract(Phil, Frank, metal)
+    # Seller.sell_contract(Frank, metal)  #not really needed
+    # db_connection.DB_trade_facilitor(metal, Phil, Frank)
 
    
+    #duplicate checking system
+
+    #initiate database class
+    db_connection = DB('db_connection1')
 
 
 
+    Sam = Seller('Sam', 1)
+    twenty_unit_complex = Contract(2300897, 'Twenty Unit Complex')
+    Sam.add_contract_s(Sam, twenty_unit_complex)
+
+    #db_connection.DB_insert_Seller(Sam)
+
+    #db_connection.DB_insert_contract(db_connection, twenty_unit_complex)
+
+    #db_connection.DB_insert_contract(db_connection, twenty_unit_complex)
    
-
+    Dave = Buyer('Dave', 1)
+    db_connection.DB_insert_buyer(Dave)
+    Buyer.buy_contract(Dave, Sam, twenty_unit_complex)
+    Sam.sell_contract(Sam, twenty_unit_complex)
+    #db_connection.DB_trade_facilitor(twenty_unit_complex, Dave, Sam)
    
 
     def run_program():
