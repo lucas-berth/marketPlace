@@ -63,3 +63,14 @@ Next steps:
  --configure the trade function within the DB class
  need to keep in mind order of operations with adding contracts to the array to then be added to the buyer collection
  Review ratings and movement of objects between classes before inserting into database.
+
+
+05.04.24
+Trade facilitor is fully functional within the operations class. 
+OOP has the drawbacks of having to load the contracts and items of each inhabitant once the program is reran...
+        --think about another programming method to overcome this.
+
+Next steps:
+1. Incorporate rating system into contracts being added to seller and buyers buying 
+2. Look into front-end pleasing ideas/ where to take the project next 
+        -- potentially add some visualization with the contracts  data -> may need API integration to have more complete graphs.
